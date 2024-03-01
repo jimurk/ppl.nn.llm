@@ -14,6 +14,7 @@
 #include "ppl/nn/models/onnx/parsers/pmx/parse_rotary_position_embedding_param.h"
 #include "ppl/nn/models/onnx/parsers/pmx/parse_row_parallel_linear_param.h"
 #include "ppl/nn/models/onnx/parsers/pmx/parse_swish_param.h"
+#include "ppl/nn/models/onnx/parsers/pmx/parse_vision_embedding_param.h"
 #include "ppl/nn/common/logger.h"
 
 using namespace std;
@@ -92,6 +93,10 @@ void RegisterParsers() {
                                ppl::nn::pmx::ParseRowParallelLinearParam, nullptr);
     PPL_REGISTER_OP_WITH_PARAM("pmx", "SwiGLU", 1, 1, ppl::nn::pmx::SwishParam,
                                ppl::nn::pmx::ParseSwishParam, nullptr);
+    PPL_REGISTER_OP_WITH_PARAM("pmx", "Swish", 1, 1, ppl::nn::pmx::SwishParam,
+                               ppl::nn::pmx::ParseSwishParam, nullptr);
+    PPL_REGISTER_OP_WITH_PARAM("pmx", "VisionEmbedding", 1, 1, ppl::nn::pmx::VisionEmbeddingParam,
+                               ppl::nn::pmx::ParseVisionEmbeddingParam, nullptr);
 
     // dynamic batching
     PPL_REGISTER_OP_WITH_PARAM("pmx.dynamic_batching", "KeyValueCache", 1, 1, ppl::nn::pmx::KeyValueCacheParam,
