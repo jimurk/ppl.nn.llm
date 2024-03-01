@@ -45,7 +45,6 @@ ppl::common::RetCode SwishKernel::DoExecute(KernelExecContext* ctx) {
     bool can_trans_input = ctx->IsLastConsumerOfInput(0) && input->GetType() == TENSORTYPE_NORMAL;
     bool can_trans_gate = gate && ctx->IsLastConsumerOfInput(1) && gate->GetType() == TENSORTYPE_NORMAL;
 
-    auto input_data = input->GetBufferPtr();
     if (can_trans_input) {
         output->TransferBufferFrom(input);
     } else if (can_trans_gate) {
